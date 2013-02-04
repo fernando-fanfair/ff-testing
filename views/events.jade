@@ -1,0 +1,16 @@
+h1 Events
+
+if events.length
+    p Here are the current events:
+    ul.events
+        for event in events
+            li.event
+                a(href='/events/#{event.id}') #{event.name}
+else
+    p There are no events currently.
+
+form(action='', method='POST')
+    p Create a new event:
+    input(type='text', name='name', placeholder='Name', required)
+    input(type='text', name='desc', placeholder='Description', required)
+    input(type='submit', value='Create')

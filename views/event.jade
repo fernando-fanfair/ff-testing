@@ -1,0 +1,27 @@
+h1 #{event.name}
+p #{event.desc}
+p
+	a(href='/events') Back to events
+
+if pledged.length
+	p #{event.name} has #{pledged.length} pledges.
+	ul.users
+		for other in pledged
+			li.event
+					a(href='/users/#{other.id}') #{other.name}
+else
+	p #{event.name} has no pledges yet. 
+
+if others.length
+	form(action='/events/#{event.id}/pledge', method='POST')
+		p Add someone to pledge:
+		label
+			select(name='event[id]', required)
+				option(value='')
+				for user in others
+					option(value='#{user.id}') #{user.name}
+			input(type='submit', value='Pledge')
+else
+	p There's no one else left to pledge!
+
+

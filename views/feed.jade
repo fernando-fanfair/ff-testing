@@ -1,0 +1,23 @@
+h1 Feed
+if users.length
+	ul
+		- for(j=0; j<users.length; j++){
+			li
+				case reltypes[j]
+					when "follows"
+						a(href='/users/#{users[j].id}') #{users[j].name}
+						span  is 
+							strong following 
+						a(href='/users/#{others[j].id}') #{others[j].name}
+					when "pledge"
+						a(href='/users/#{users[j].id}') #{users[j].name}
+						span  is 
+							strong pledging 
+						a(href='/events/#{others[j].id}') #{others[j].name}
+					default
+						p nothing
+		-}
+
+
+else
+	p No activity
